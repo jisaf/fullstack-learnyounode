@@ -1,25 +1,18 @@
-var http = require('http');
 var fs = require('fs');
 var path = require('path');
 
-http.createServer(function(request, response){
-	response.writeHead(200);
-	response.end();
-}).listen(8080, function(){
+
+module.exports = function filter (dir, ext, func){
 	var files = [];
-	fs.readdir(process.argv[2], function(err, list){
-		if (err) throw err;
-		var fileArr = list;
-//		console.log(list);
-//		console.log(process.argv[3]);
+	fs.readdir(dir, function(err, data){
+		if (err) return func(err);
+		var fileArr = data;
 		for (var i = 0; i < fileArr.length; i++) {
-//			console.log(path.extname(fileArr[i]));
-			if (path.extname(fileArr[i]) === "."+process.argv[3]){
+			if (path.extname(fileArr[i]) === "."+ext){
 				files.push(fileArr[i]);
-//				console.log(fileArr[i]);
 			}
 		}
-	console.log(files.join("\n"));
+	return func(null, files);
 
 	});
-})
+}
