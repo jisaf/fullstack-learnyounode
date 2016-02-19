@@ -7,14 +7,4 @@ var sum = function(arv){
 	return total;
 }
 
-http.createServer(function(request, response){
-	response.writeHead(200);
-	response.end();
-
-}).listen(8080, console.log(sum(process.argv)));
-// }).listen(8080, function(){var result = 0;
-// 	for (var i = 2; i < process.argv.length; i++) {
-// 		result += Number(process.argv[i])
-// 	}
-// 	console.log(result);
-// });
+console.log(sum(process.argv));

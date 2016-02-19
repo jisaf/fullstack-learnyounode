@@ -2,10 +2,10 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path');
 
-http.createServer(function(request, response){
-	response.writeHead(200);
-	response.end();
-}).listen(8080, function(){
+// http.createServer(function(request, response){
+// 	response.writeHead(200);
+// 	response.end();
+// }).listen(8080, function(){
 	var files = [];
 	fs.readdir(process.argv[2], function(err, list){
 		if (err) throw err;
@@ -22,4 +22,4 @@ http.createServer(function(request, response){
 	console.log(files.join("\n"));
 
 	});
-})
+// })
